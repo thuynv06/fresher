@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head">
+</head>
+<body>
+	<nav th:replace="layout :: header"></nav>
+
+
+	<div class="container main-content list">
+		<div class="row">
+			<h2>
+				<a th:href="@{/course-list}"> >>List Course</a>
+			</h2>
+		</div>
+		<div class="row">
+			<a th:href="@{/course-save}" class="btn btn-success pull-left">
+				<span class="glyphicon glyphicon-plus"></span> Add new course
+			</a>
+			<form class="form-inline pull-right" action="#" method="GET">
+				<div class="form-group">
+					<input type="text" class="form-control" name="q"
+						placeholder="Type contact name..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		<div class="row">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>price</th>
+						
+						<th>View</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="course : ${listCourse}">
+
+						<td><p th:text="${course.id}"></p></td>
+						<td><p th:text="${course.name}"></p></td>
+						<td><p th:text="${course.price}"></p></td>
+						
+						<td><a th:href="@{/course-view/} + ${course.id}"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a th:href="@{/course-update/} + ${course.id}"><span
+								class="glyphicon glyphicon-edit"></span></a></td>
+						<td><a th:href="@{/courseDelete/} + ${course.id}"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

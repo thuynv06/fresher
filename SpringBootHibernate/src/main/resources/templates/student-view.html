@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head">
+<title>Spring Boot - Hibernate Demo</title>
+</head>
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<h2>
+		<a th:href="@{/student-list}"> >>List Student</a>
+	</h2>
+	<div class="row">
+		<div class=".container">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h3><p th:text="${student.name}"/></h3> Detail
+				<table class="table table-bordered table-hover">
+					<tr>
+						<td>Id:</td>
+						<td><p th:text="${student.id}" /></td>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td><p th:text="${student.name}" /></td>
+					</tr>
+					<tr>
+						<td>Age:</td>
+						<td><p th:text="${student.age}" /></td>
+					</tr>
+					<tr>
+						<td>Address:</td>
+						<td><p th:text="${student.address}" /></td>
+					</tr>
+					<tr>
+						<td>Phone:</td>
+						<td><p th:text="${student.phone}" /></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
