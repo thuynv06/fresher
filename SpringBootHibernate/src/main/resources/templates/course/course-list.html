@@ -31,7 +31,7 @@
 						<th>Id</th>
 						<th>Name</th>
 						<th>price</th>
-						
+						<th>View Students</th>
 						<th>View</th>
 						<th>Edit</th>
 						<th>Delete</th>
@@ -40,15 +40,16 @@
 				<tbody>
 					<tr th:each="course : ${listCourse}">
 
-						<td><p th:text="${course.id}"></p></td>
+						<td><p th:text="${course.idCourse}"></p></td>
 						<td><p th:text="${course.name}"></p></td>
 						<td><p th:text="${course.price}"></p></td>
-						
-						<td><a th:href="@{/course-view/} + ${course.id}"><span
+						<td><a th:href="@{/course-student/} + ${course.idCourse}"><span>
+									view students </span></a></td>
+						<td><a th:href="@{/course-view/} + ${course.idCourse}"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-						<td><a th:href="@{/course-update/} + ${course.id}"><span
+						<td><a th:href="@{/course-update/} + ${course.idCourse}"><span
 								class="glyphicon glyphicon-edit"></span></a></td>
-						<td><a th:href="@{/courseDelete/} + ${course.id}"><span
+						<td><a th:href="@{/courseDelete/} + ${course.idCourse}"><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</tbody>

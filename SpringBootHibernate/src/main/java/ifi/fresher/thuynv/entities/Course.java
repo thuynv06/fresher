@@ -1,16 +1,17 @@
 package ifi.fresher.thuynv.entities;
 
-
-
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -20,37 +21,40 @@ import javax.persistence.Table;
 public class Course {
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "idCourse")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idCourse;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "price")
 	private float price;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "course")
-	private List<Student> course ;
-	
-	public List<Student> getCourses() {
-		return course;
+	@ManyToMany(mappedBy = "course")
+	private List<Student> student;
+
+	public List<Student> getStudent() {
+		return student;
 	}
 
-	public void setCourses(List<Student> course) {
-		this.course = course;
-	}
 	public Course() {
+	}
+
+	public void setStudent(List<Student> student) {
+		this.student = student;
 	}
 
 	public Course(String courseName) {
 		this.name = courseName;
 	}
 
-	public int getId() {
-		return id;
+
+
+	public int getIdCourse() {
+		return idCourse;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdCourse(int idCourse) {
+		this.idCourse = idCourse;
 	}
 
 	public String getName() {

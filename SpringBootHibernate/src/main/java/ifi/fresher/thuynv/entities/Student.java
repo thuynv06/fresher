@@ -1,9 +1,7 @@
 package ifi.fresher.thuynv.entities;
 
-
-
 import java.util.List;
-
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,12 +19,12 @@ import ifi.fresher.thuynv.entities.Course;
 
 @Entity
 @Table(name = "student")
-public class Student  {
+public class Student {
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "idStudent")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idStudent;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "age")
@@ -35,18 +33,17 @@ public class Student  {
 	private String address;
 	@Column(name = "phone")
 	private String phone;
-//	private Set<Course> courses = new HashSet<Course>(0);
 
-	public Student(String studentName) {
+	
+	public Student(String studentName, List<Course> course) {
 		this.name = studentName;
-//		this.courses = courses;
+		this.course = course;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "course_id") })
-	private List<Course> course ;
-	
+	@ManyToMany( cascade = CascadeType.ALL)
+	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "idStudent") }, inverseJoinColumns = {
+			@JoinColumn(name = "student_id") })
+	private List<Course> course;
 
 	public List<Course> getCourses() {
 		return course;
@@ -59,7 +56,8 @@ public class Student  {
 	public Student() {
 
 	}
-//
+
+	//
 	public Student(String name, int age, String address, String phone) {
 		this.name = name;
 		this.age = age;
@@ -70,11 +68,11 @@ public class Student  {
 
 	// getter - setter
 	public int getId() {
-		return id;
+		return idStudent;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idStudent = id;
 	}
 
 	public String getName() {
@@ -108,5 +106,5 @@ public class Student  {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 }

@@ -1,11 +1,10 @@
 package ifi.fresher.thuynv.dao;
 
-import java.util.Arrays;
+
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +13,7 @@ import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 
 @Repository(value = "studentDAO")
+
 @Transactional(rollbackFor = Exception.class)
 public class StudentDAO {
 	@Autowired
@@ -45,22 +45,13 @@ public class StudentDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Course> studentCourse(final int id) {
+	public List<Course> studentCourse(final Student student ) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String hql="select course.name from course join student_course "
-				+"on course.id=student_course.course_id " + "where student_course.student_id =" + id;
+				+"on course.id=student_course.course_id " + "where student_course.student_id =" + student.getId();	
+		List<Course> course=session.createQuery(hql,Course.class).list();
+				 return course;		
 		
-		List<Course> course=session.createQuery(hql).list();
-		
-		 return course;
-		
-//		String query = "select student.name from student join course on "
-//				+ "student.id=student_course.student_id ";  
-//		session.createQuery(query);
-//		student.setCourses(Arrays.asList(course));
-//		Session session = this.sessionFactory.getCurrentSession();
-//		session.save(course);
-//		session.getTransaction().commit();
-//		session.close();
 	}
+
 }

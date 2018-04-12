@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ifi.fresher.thuynv.dao.CourseDAO;
 import ifi.fresher.thuynv.entities.Course;
+import ifi.fresher.thuynv.entities.Student;
 
 @Service
 @Transactional
@@ -37,6 +38,10 @@ public class CourseService {
 			courseDAO.delete(course);
 		}
 
+	}
+
+	public List<Student> courseStudent(final Course course) {
+		return courseDAO.courseStudent(course);
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ifi.fresher.thuynv.entities.Course;
+import ifi.fresher.thuynv.entities.Student;
 
 
 @Repository(value = "courseDAO")
@@ -41,6 +42,18 @@ public class CourseDAO {
 	public List<Course> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("FROM Course", Course.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Student> courseStudent(final Course course ) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql="select student.name from student join student_course "
+				+"on student.id=student_course.student_id " + "where student_course.course_id =" + course.getIdCourse();
+		
+		List<Student> stu=session.createQuery(hql).list();
+		
+		 return stu;
+		
 	}
 
 }

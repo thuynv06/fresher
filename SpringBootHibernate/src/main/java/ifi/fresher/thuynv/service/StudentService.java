@@ -9,36 +9,38 @@ import ifi.fresher.thuynv.dao.StudentDAO;
 import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 
-
-
 @Service
 @Transactional
 public class StudentService {
-	 @Autowired
-	 	private StudentDAO studentDAO;
-	 	
-	 public List<Student> findAll(){
-		 return studentDAO.findAll();
-	 }
-	 public Student findById(final int id) {
-		 return studentDAO.findById(id);
-	 }
-	 public void save(final Student student) {
-		  studentDAO.save(student);
-	 }
-	 public void update(final Student student) {
-		 studentDAO.update(student);
-	 }
-	 
-	 public void delete(final int id) {
-		 Student student=studentDAO.findById(id);
-		 if(student != null) {
-			 studentDAO.delete(student);
-		 }
-		 
-	 }
-	 public List<Course> studentCourse(final int id){	 
-		 return studentDAO.studentCourse(id);
-	 }
-	 
+	@Autowired
+	private StudentDAO studentDAO;
+
+	public List<Student> findAll() {
+		return studentDAO.findAll();
+	}
+
+	public Student findById(final int id) {
+		return studentDAO.findById(id);
+	}
+
+	public void save(final Student student) {
+		studentDAO.save(student);
+	}
+
+	public void update(final Student student) {
+		studentDAO.update(student);
+	}
+
+	public void delete(final int id) {
+		Student student = studentDAO.findById(id);
+		if (student != null) {
+			studentDAO.delete(student);
+		}
+
+	}
+
+	public List<Course> studentCourse(final Student student) {
+		return studentDAO.studentCourse(student);
+	}
+
 }

@@ -1,6 +1,5 @@
 package ifi.fresher.thuynv.controller;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,22 +50,22 @@ public class StudentController {
 
 	@RequestMapping("/updateStudent")
 	public String doUpdateStudent(@ModelAttribute("Student") Student student, Model model) {
-		
+		studentService.update(student);
 		model.addAttribute("listStudent", studentService.findAll());
 		return "redirect:student-list";
 	}
+	@RequestMapping("/studentDelete/{id}")
+	public String doDeleteStudent(@PathVariable int id, Model model) {
+		studentService.delete(id);
+		model.addAttribute("listStudent", studentService.findAll());
+		return "redirect:/student-list";
+	}
 	@RequestMapping(value = {"/student-course/{id}" })
-	public String studentCourse(@PathVariable int id,Model model) {
+	public String studentCourse(@ModelAttribute("Student") Student student,Model model) {
 		
-		model.addAttribute("student_course",studentService.studentCourse(id));
+		model.addAttribute("student",studentService.studentCourse(student));
 		return "redirect:student-list";
 	}
-//	@RequestMapping("/studenRegisterCourse")
-//	public String studenRegisterCourse(@PathVariable int id, Model model) {
-//		studentService.delete(id);
-//		model.addAttribute("listStudent", studentService.findAll());
-//		return "redirect:/student-list";
-//	}
 	
 
 }

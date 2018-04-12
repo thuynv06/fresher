@@ -18,9 +18,8 @@ public class CourseController {
 	@RequestMapping(value = { "course-list" })
 	public String listCourse(Model model) {
 		model.addAttribute("listCourse", courseService.findAll());
-		return "/course/course-list";
+		return "course/course-list";
 	}
-
 	@RequestMapping(value = { "/course-save" })
 	public String insertCourse(Model model) {
 		model.addAttribute("course", new Course());
@@ -31,14 +30,14 @@ public class CourseController {
 	public String viewCourse(@PathVariable int id, Model model) {
 		Course course = courseService.findById(id);
 		model.addAttribute("course", course);
-		return "/course/course-view";
+		return "course/course-view";
 	}
 	
 	@RequestMapping("/course-update/{id}")
 	public String updateCourse(@PathVariable int id, Model model) {
 		Course course = courseService.findById(id);
 		model.addAttribute("course", course);
-		return "/course/course-update";
+		return "course/course-update";
 	}
 
 	@RequestMapping("/saveCourse")
@@ -60,6 +59,13 @@ public class CourseController {
 		courseService.delete(id);
 		model.addAttribute("listCourse", courseService.findAll());
 		return "redirect:/course-list";
+	}
+	
+	@RequestMapping(value = {"/course-student/{id}" })
+	public String studentCourse(@ModelAttribute("Course") Course course,Model model) {
+		
+		model.addAttribute("course",courseService.courseStudent(course));
+		return "redirect:student-list";
 	}
 
 }
