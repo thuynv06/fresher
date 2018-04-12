@@ -18,27 +18,27 @@ public class CourseController {
 	@RequestMapping(value = { "course-list" })
 	public String listCourse(Model model) {
 		model.addAttribute("listCourse", courseService.findAll());
-		return "/course-list";
+		return "/course/course-list";
 	}
 
 	@RequestMapping(value = { "/course-save" })
 	public String insertCourse(Model model) {
 		model.addAttribute("course", new Course());
-		return "course-save";
+		return "/course/course-save";
 	}
 
 	@RequestMapping("/course-view/{id}")
 	public String viewCourse(@PathVariable int id, Model model) {
 		Course course = courseService.findById(id);
 		model.addAttribute("course", course);
-		return "course-view";
+		return "/course/course-view";
 	}
 	
 	@RequestMapping("/course-update/{id}")
 	public String updateCourse(@PathVariable int id, Model model) {
 		Course course = courseService.findById(id);
 		model.addAttribute("course", course);
-		return "course-update";
+		return "/course/course-update";
 	}
 
 	@RequestMapping("/saveCourse")

@@ -40,6 +40,7 @@ public class BeanConfig {
 		factoryBean.setPackagesToScan("ifi.fresher.thuynv.entities");
 		factoryBean.setDataSource(dataSource);
 		factoryBean.setHibernateProperties(properties);
+		
 		factoryBean.afterPropertiesSet();
 		//
 		SessionFactory sf = factoryBean.getObject();

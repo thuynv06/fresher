@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ifi.fresher.thuynv.dao.StudentDAO;
+import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 
 
@@ -35,6 +36,9 @@ public class StudentService {
 			 studentDAO.delete(student);
 		 }
 		 
+	 }
+	 public List<Course> studentCourse(final int id){	 
+		 return studentDAO.studentCourse(id);
 	 }
 	 
 }

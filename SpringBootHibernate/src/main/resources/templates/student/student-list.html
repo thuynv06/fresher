@@ -33,6 +33,8 @@
 						<th>Age</th>
 						<th>Address</th>
 						<th>Phone</th>
+						<th>View Course</th>
+
 						<th>View</th>
 						<th>Edit</th>
 						<th>Delete</th>
@@ -46,6 +48,8 @@
 						<td><p th:text="${student.age}"></p></td>
 						<td><p th:text="${student.address}"></p></td>
 						<td><p th:text="${student.phone}"></p></td>
+						<td><a th:href="@{/student-course/} + ${student.id}"><span>
+									view course </span></a></td>
 						<td><a th:href="@{/student-view/} + ${student.id}"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
 						<td><a th:href="@{/student-update/} + ${student.id}"><span

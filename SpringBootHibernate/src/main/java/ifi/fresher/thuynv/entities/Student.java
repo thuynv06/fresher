@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,6 @@ public class Student  {
 	private String address;
 	@Column(name = "phone")
 	private String phone;
-	private List<Course> courses;
 //	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Student(String studentName) {
@@ -42,21 +42,19 @@ public class Student  {
 //		this.courses = courses;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "course_id") })
 	private List<Course> course ;
 	
 
 	public List<Course> getCourses() {
-		return courses;
+		return course;
 	}
 
 	public void setCourses(List<Course> courses) {
-		this.courses = courses;
+		this.course = courses;
 	}
-
-
 
 	public Student() {
 

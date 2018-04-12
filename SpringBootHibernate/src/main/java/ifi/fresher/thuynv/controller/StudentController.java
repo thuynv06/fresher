@@ -1,5 +1,6 @@
 package ifi.fresher.thuynv.controller;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,30 +16,30 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@RequestMapping(value = { "/", "/student-list" })
+	@RequestMapping(value = {"/student-list" })
 	public String listStudent(Model model) {
 		model.addAttribute("listStudent", studentService.findAll());
-		return "/student-list";
+		return "student/student-list";
 	}
 
 	@RequestMapping(value = { "/student-save" })
 	public String insertStudent(Model model) {
 		model.addAttribute("student", new Student());
-		return "student-save";
+		return "student/student-save";
 	}
 
 	@RequestMapping("/student-view/{id}")
 	public String viewStudent(@PathVariable int id, Model model) {
 		Student student = studentService.findById(id);
 		model.addAttribute("student", student);
-		return "student-view";
+		return "student/student-view";
 	}
 
 	@RequestMapping("/student-update/{id}")
 	public String updateStudent(@PathVariable int id, Model model) {
 		Student student = studentService.findById(id);
 		model.addAttribute("student", student);
-		return "student-update";
+		return "student/student-update";
 	}
 
 	@RequestMapping("/saveStudent")
@@ -50,16 +51,22 @@ public class StudentController {
 
 	@RequestMapping("/updateStudent")
 	public String doUpdateStudent(@ModelAttribute("Student") Student student, Model model) {
-		studentService.update(student);
+		
 		model.addAttribute("listStudent", studentService.findAll());
 		return "redirect:student-list";
 	}
-
-	@RequestMapping("/studentDelete/{id}")
-	public String doDeleteStudent(@PathVariable int id, Model model) {
-		studentService.delete(id);
-		model.addAttribute("listStudent", studentService.findAll());
-		return "redirect:/student-list";
+	@RequestMapping(value = {"/student-course/{id}" })
+	public String studentCourse(@PathVariable int id,Model model) {
+		
+		model.addAttribute("student_course",studentService.studentCourse(id));
+		return "redirect:student-list";
 	}
+//	@RequestMapping("/studenRegisterCourse")
+//	public String studenRegisterCourse(@PathVariable int id, Model model) {
+//		studentService.delete(id);
+//		model.addAttribute("listStudent", studentService.findAll());
+//		return "redirect:/student-list";
+//	}
+	
 
 }
