@@ -1,5 +1,6 @@
 package ifi.fresher.thuynv.entities;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,17 @@ public class Course {
 	private float price;
 
 	@ManyToMany(mappedBy = "course")
+	private Collection<Student> s;
+	
 	private List<Student> student;
+
+	public Collection<Student> getS() {
+		return s;
+	}
+
+	public void setS(Collection<Student> s) {
+		this.s = s;
+	}
 
 	public List<Student> getStudent() {
 		return student;
@@ -72,5 +83,23 @@ public class Course {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
+//	@Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+// 
+//        Course course = (Course) o;
+// 
+//        if (!idCourse.equals(course.idCourse)) return false;
+//        return name.equals(course.name);
+//    }
+// 
+//    @Override
+//    public int hashCode() {
+//        int result = idCourse.hashCode();
+//        result = 31 * result + name.hashCode();
+//        return result;
+//    }
 
 }

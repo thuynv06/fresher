@@ -13,8 +13,8 @@
 			</h2>
 		</div>
 		<div class="row">
-			<a th:href="@{/course-save}" class="btn btn-success pull-left">
-				<span class="glyphicon glyphicon-plus"></span> Add new course
+			<a th:href="@{/course-save}" class="btn btn-success pull-left"> <span
+				class="glyphicon glyphicon-plus"></span> Add new course
 			</a>
 			<form class="form-inline pull-right" action="#" method="GET">
 				<div class="form-group">
@@ -30,22 +30,18 @@
 					<tr>
 						<th>Id</th>
 						<th>Name</th>
-						<th>price</th>					
+						<th>price</th>
 						<th>View</th>
 						<th>Edit</th>
 						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="student : ${listStudent}">
-
-						<td><p th:text="${student.id}"></p></td>
-						<td><p th:text="${student.name}"></p></td>
-						<td><p th:text="${student.age}"></p></td>
-						<td><p th:text="${student.address}"></p></td>
-						<td><p th:text="${student.phone}"></p></td>
+					<tr th:each="data : ${cot}">
+						<tr th:each="data, iterstat: ${cot}">
+  						</tr>
 						
-					</tr>
+					
 				</tbody>
 			</table>
 		</div>

@@ -1,5 +1,6 @@
 package ifi.fresher.thuynv.service;
 
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class StudentService {
 
 	}
 
-	public List<Course> studentCourse(final Student student) {
+	public Collection<Course> studentCourse(final Student student) {
 		return studentDAO.studentCourse(student);
 	}
 

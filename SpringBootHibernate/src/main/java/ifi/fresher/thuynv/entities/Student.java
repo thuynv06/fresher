@@ -1,5 +1,6 @@
 package ifi.fresher.thuynv.entities;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 import javax.persistence.CascadeType;
 import ifi.fresher.thuynv.entities.Course;
@@ -35,23 +38,32 @@ public class Student {
 	private String phone;
 
 	
-	public Student(String studentName, List<Course> course) {
+	public Student(String studentName) {
 		this.name = studentName;
-		this.course = course;
+	
 	}
 
 	@ManyToMany( cascade = CascadeType.ALL)
-	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "idStudent") }, inverseJoinColumns = {
-			@JoinColumn(name = "student_id") })
-	private List<Course> course;
-
-	public List<Course> getCourses() {
-		return course;
+	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "course_id") })
+	private Collection<Course> c;
+	public Collection<Course> getC() {
+		return c;
 	}
 
-	public void setCourses(List<Course> courses) {
-		this.course = courses;
+	public void setC(Collection<Course> c) {
+		this.c = c;
 	}
+
+//	private List<Course> course;
+//
+//	public List<Course> getCourses() {
+//		return course;
+//	}
+//
+//	public void setCourses(List<Course> courses) {
+//		this.course = courses;
+//	}
 
 	public Student() {
 
@@ -106,5 +118,25 @@ public class Student {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+//	@Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+// 
+//        Student student = (Student) o;
+// 
+//        if (!idStudent.equals(student.idStudent)) {
+//        	return false;
+//        }
+//        return name.equals(student.name);
+//    }
+// 
+//    @Override
+//    public int hashCode() {
+//        int result = idStudent.hashCode();
+//        result = 31 * result + name.hashCode();
+//        return result;
+//    }
 
 }

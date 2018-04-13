@@ -1,5 +1,14 @@
 package ifi.fresher.thuynv.controller;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 import ifi.fresher.thuynv.service.StudentService;
 
@@ -14,6 +24,9 @@ import ifi.fresher.thuynv.service.StudentService;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private SessionFactory sessionFactory;
+
 
 	@RequestMapping(value = {"/student-list" })
 	public String listStudent(Model model) {
@@ -62,9 +75,19 @@ public class StudentController {
 	}
 	@RequestMapping(value = {"/student-course/{id}" })
 	public String studentCourse(@ModelAttribute("Student") Student student,Model model) {
-		
-		model.addAttribute("student",studentService.studentCourse(student));
-		return "redirect:student-list";
+		  
+		 	Session session = this.sessionFactory.getCurrentSession();
+		 	session.beginTransaction();
+	        Student s  = session.find(Student.class, 1);
+	        System.out.println("Course name: " + s.getName());
+	        s.getC().forEach(
+	        		(c) ->System.out.println(c.getName())
+	        		);
+	        
+	        session.close();
+//		List<Course> c= studentService.studentCourse(student);
+		model.addAttribute("cot",s.getC());
+		return "student/student_course";
 	}
 	
 

@@ -1,10 +1,14 @@
 package ifi.fresher.thuynv.dao;
 
 
+import java.util.Collection;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,12 +49,15 @@ public class StudentDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Course> studentCourse(final Student student ) {
-		Session session = this.sessionFactory.getCurrentSession();
-		String hql="select course.name from course join student_course "
-				+"on course.id=student_course.course_id " + "where student_course.student_id =" + student.getId();	
-		List<Course> course=session.createQuery(hql,Course.class).list();
-				 return course;		
+	public Collection<Course> studentCourse(final Student student ) {
+//		Session session = this.sessionFactory.getCurrentSession();
+//		Query query;
+//		query = session.createQuery(
+//		"select course.name from course join student_course "
+//				+"on course.id=student_course.course_id " + "where student_course.student_id =" + student.getId(),Student.class);	
+//		return query.getResultList();
+//	
+		return  student.getC();
 		
 	}
 
