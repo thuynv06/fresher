@@ -35,6 +35,7 @@ public class StudentDAO {
 
 	public Student findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
+		Student s= session.get(Student.class, id);
 		return session.get(Student.class, id);
 	}
 
@@ -45,20 +46,20 @@ public class StudentDAO {
 
 	public List<Student> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Student", Student.class).getResultList();
+		List<Student> s=session.createQuery("FROM Student", Student.class).getResultList();	
+//		List<Course>  c=s.get(0).getCourse();
+		return s;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Collection<Course> studentCourse(final Student student ) {
-//		Session session = this.sessionFactory.getCurrentSession();
-//		Query query;
-//		query = session.createQuery(
-//		"select course.name from course join student_course "
-//				+"on course.id=student_course.course_id " + "where student_course.student_id =" + student.getId(),Student.class);	
-//		return query.getResultList();
-//	
-		return  student.getC();
+	public List<Course> getStudentCourse(final int id){
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Course> c= session.get(Student.class, id).getCourse();	
+		c.forEach(x -> System.out.print(x.getName()));
+		return c;
 		
 	}
+	
+
+
 
 }

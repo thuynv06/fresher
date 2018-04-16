@@ -1,5 +1,6 @@
 package ifi.fresher.thuynv.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ import ifi.fresher.thuynv.entities.Course;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student  {
 
 	@Id
 	@Column(name = "idStudent")
@@ -46,20 +47,17 @@ public class Student {
 	@ManyToMany( cascade = CascadeType.ALL)
 	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "course_id") })
-	private Collection<Course> c;
-	public Collection<Course> getC() {
-		return c;
-	}
-
-	public void setC(Collection<Course> c) {
-		this.c = c;
-	}
-
-//	private List<Course> course;
-//
-//	public List<Course> getCourses() {
-//		return course;
+//	private Collection<Course> c;
+//	public Collection<Course> getC() {
+//		return c;
 //	}
+//
+//	public void setC(Collection<Course> c) {
+//		this.c = c;
+//	}
+
+	private List<Course> course;
+//
 //
 //	public void setCourses(List<Course> courses) {
 //		this.course = courses;
@@ -67,6 +65,22 @@ public class Student {
 
 	public Student() {
 
+	}
+
+	public int getIdStudent() {
+		return idStudent;
+	}
+
+	public void setIdStudent(int idStudent) {
+		this.idStudent = idStudent;
+	}
+
+	public List<Course> getCourse() {
+		return course;
+	}
+
+	public void setCourse(List<Course> course) {
+		this.course = course;
 	}
 
 	//
@@ -79,14 +93,7 @@ public class Student {
 	}
 
 	// getter - setter
-	public int getId() {
-		return idStudent;
-	}
-
-	public void setId(int id) {
-		this.idStudent = id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}

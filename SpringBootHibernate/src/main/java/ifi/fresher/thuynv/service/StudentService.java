@@ -17,6 +17,7 @@ public class StudentService {
 	private StudentDAO studentDAO;
 
 	public List<Student> findAll() {
+		
 		return studentDAO.findAll();
 	}
 
@@ -39,9 +40,9 @@ public class StudentService {
 		}
 
 	}
-
-	public Collection<Course> studentCourse(final Student student) {
-		return studentDAO.studentCourse(student);
+	public List<Course> getStudentCourse(final int id){
+		return studentDAO.getStudentCourse(id);
 	}
+
 
 }

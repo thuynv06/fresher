@@ -9,14 +9,15 @@ import javax.persistence.Persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.validator.internal.util.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 import ifi.fresher.thuynv.service.StudentService;
 
@@ -24,12 +25,10 @@ import ifi.fresher.thuynv.service.StudentService;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
-	@Autowired
-	private SessionFactory sessionFactory;
-
 
 	@RequestMapping(value = {"/student-list" })
 	public String listStudent(Model model) {
+		
 		model.addAttribute("listStudent", studentService.findAll());
 		return "student/student-list";
 	}
@@ -73,22 +72,10 @@ public class StudentController {
 		model.addAttribute("listStudent", studentService.findAll());
 		return "redirect:/student-list";
 	}
-	@RequestMapping(value = {"/student-course/{id}" })
-	public String studentCourse(@ModelAttribute("Student") Student student,Model model) {
-		  
-		 	Session session = this.sessionFactory.getCurrentSession();
-		 	session.beginTransaction();
-	        Student s  = session.find(Student.class, 1);
-	        System.out.println("Course name: " + s.getName());
-	        s.getC().forEach(
-	        		(c) ->System.out.println(c.getName())
-	        		);
-	        
-	        session.close();
-//		List<Course> c= studentService.studentCourse(student);
-		model.addAttribute("cot",s.getC());
-		return "student/student_course";
-	}
-	
 
+	@RequestMapping(value = {"/student-course/{id}" })
+	public String getListStudent(@PathVariable int id,Model model) {
+		model.addAttribute("listC",studentService.getStudentCourse(id));
+		return "student/student_course";	
+	}
 }

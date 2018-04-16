@@ -43,18 +43,11 @@ public class CourseDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("FROM Course", Course.class).getResultList();
 	}
-	
-//	@SuppressWarnings("unchecked")
-//	public List<Student> courseStudent(final Course course ) {
-//		Session session = this.sessionFactory.getCurrentSession();
-//		String hql="select student.name from student join student_course "
-//				+"on student.id=student_course.student_id " + "where student_course.course_id =" + course.getIdCourse();
-//		
-//		List<Student> stu=session.createQuery(hql).list();
-//		
-//		 return stu;
-//	
-//		
-//	}
+	public List<Student> getListStudent(final int id){
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Student> s= session.get(Course.class, id).getStudent();	
+		s.forEach(x -> System.out.print(x.getName()));
+		return s;
+	}
 
 }

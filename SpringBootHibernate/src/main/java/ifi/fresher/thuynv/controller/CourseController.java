@@ -61,11 +61,11 @@ public class CourseController {
 		return "redirect:/course-list";
 	}
 	
-//	@RequestMapping(value = {"/course-student/{id}" })
-//	public String studentCourse(@ModelAttribute("Course") Course course,Model model) {
-//		
-//		model.addAttribute("course",courseService.courseStudent(course));
-//		return "redirect:student-list";
-//	}
+	@RequestMapping(value = {"/course-student/{id}" })
+	public String getListStudent(@PathVariable int id,Model model) {
+		model.addAttribute("listStudent",courseService.getListStudent(id));
+		return "course/course-student";
+		
+	}
 
 }

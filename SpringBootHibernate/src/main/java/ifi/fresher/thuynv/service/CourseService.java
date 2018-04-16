@@ -39,9 +39,8 @@ public class CourseService {
 		}
 
 	}
-//
-//	public List<Student> courseStudent(final Course course) {
-//		return courseDAO.courseStudent(course);
-//	}
+	public List<Student> getListStudent(final int id){
+		return courseDAO.getListStudent(id);
+	}
 
 }

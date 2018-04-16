@@ -5,7 +5,6 @@
 <body>
 	<nav th:replace="layout :: header"></nav>
 
-
 	<div class="container main-content list">
 		<div class="row">
 			<h2>
@@ -34,7 +33,6 @@
 						<th>Address</th>
 						<th>Phone</th>
 						<th>View Course</th>
-
 						<th>View</th>
 						<th>Edit</th>
 						<th>Delete</th>
@@ -42,19 +40,18 @@
 				</thead>
 				<tbody>
 					<tr th:each="student : ${listStudent}">
-
-						<td><p th:text="${student.id}"></p></td>
+						<td><p th:text="${student.idStudent}"></p></td>
 						<td><p th:text="${student.name}"></p></td>
 						<td><p th:text="${student.age}"></p></td>
 						<td><p th:text="${student.address}"></p></td>
 						<td><p th:text="${student.phone}"></p></td>
-						<td><a th:href="@{/student-course/} + ${student.id}"><span>
+						<td><a th:href="@{/student-course/} + ${student.idStudent}"><span>
 									view course </span></a></td>
-						<td><a th:href="@{/student-view/} + ${student.id}"><span
+						<td><a th:href="@{/student-view/} + ${student.idStudent}"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-						<td><a th:href="@{/student-update/} + ${student.id}"><span
+						<td><a th:href="@{/student-update/} + ${student.idStudent}"><span
 								class="glyphicon glyphicon-edit"></span></a></td>
-						<td><a th:href="@{/studentDelete/} + ${student.id}"><span
+						<td><a th:href="@{/studentDelete/} + ${student.idStudent}"><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</tbody>
