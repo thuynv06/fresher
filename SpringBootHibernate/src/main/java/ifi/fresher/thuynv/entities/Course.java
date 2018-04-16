@@ -31,17 +31,8 @@ public class Course {
 	private float price;
 
 	@ManyToMany(mappedBy = "course")
-//	private Collection<Student> s;
-//	
 	private List<Student> student;
-//
-//	public Collection<Student> getStudent() {
-//		return s;
-//	}
-//
-//	public void setStudent(Collection<Student> s) {
-//		this.s = s;
-//	}
+
 
 	public List<Student> getStudent() {
 		return student;

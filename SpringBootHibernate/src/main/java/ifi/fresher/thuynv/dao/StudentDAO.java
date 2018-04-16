@@ -1,11 +1,7 @@
 package ifi.fresher.thuynv.dao;
 
 
-import java.util.Collection;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -51,12 +47,16 @@ public class StudentDAO {
 		return s;
 	}
 	
-	public List<Course> getStudentCourse(final int id){
+	public List<Course> getlistCourse(final int id){
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Course> c= session.get(Student.class, id).getCourse();	
 		c.forEach(x -> System.out.print(x.getName()));
-		return c;
+		return session.get(Student.class, id).getCourse();	
 		
+	}
+	public void addCourse(final int id, List<Course> course) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.get(Student.class, id).setCourse(course);
 	}
 	
 

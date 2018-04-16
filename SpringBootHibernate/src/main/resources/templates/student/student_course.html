@@ -3,58 +3,73 @@
 <head th:replace="layout :: head">
 </head>
 <body>
-	<nav th:replace="layout :: header"></nav>
-
-
 	<div class="container main-content list">
 		<div class="row">
 			<h2>
-				<a th:href="@{/course-list}"> >>List Course</a>
+				<p th:text="${student.name}"></p>
 			</h2>
 		</div>
 		<div class="row">
-			<a th:href="@{/course-save}" class="btn btn-success pull-left"> <span
-				class="glyphicon glyphicon-plus"></span> Add new course
-			</a>
-			<form class="form-inline pull-right" action="#" method="GET">
-				<div class="form-group">
-					<input type="text" class="form-control" name="q"
-						placeholder="Type contact name..." />
-				</div>
-				<button type="submit" class="btn btn-primary">Search</button>
-			</form>
+			<h2>Khóa Học Đã Đăng Ký</h2>
 		</div>
-		
+
 		<div class="row">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>price</th>
-						<th>View Course</th>
-						<th>Delete</th>
+						<th>Tên Khóa Học</th>
+						<th>Giá</th>
+						<th>Xem Danh Sách SV</th>
+						<th>Xem Chi Tiết</th>
+						<th>Hủy Đăng Ký</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="course : ${listC}">
-						<td><p th:text="${course.idCourse}"></p></td>
-						<td><p th:text="${course.name}"></p></td>
-						<td><p th:text="${course.price}"></p></td>
-						<td><a th:href="@{/course-student/} + ${course.idCourse}"><span>
+					<tr th:each="c : ${listC}">
+						<td><p th:text="${c.name}"></p></td>
+						<td><p th:text="${c.price}"></p></td>
+						<td><a th:href="@{/course-student/} + ${c.idCourse}"><span>
 									view students </span></a></td>
-						<td><a th:href="@{/course-view/} + ${course.idCourse}"><span
+						<td><a th:href="@{/course-view/} + ${c.idCourse}"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-						<td><a th:href="@{/course-update/} + ${course.idCourse}"><span
-								class="glyphicon glyphicon-edit"></span></a></td>
-						<td><a th:href="@{/courseDelete/} + ${course.idCourse}"><span
+						<td><a th:href="@{/courseDelete/} + ${c.idCourse}"><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<hr>
 	</div>
-
+	<div class="container main-content list">
+		<th:block th:unless="${#lists.isEmpty(listCourse)}">
+			<div class="row">
+				<h2>Khóa Học Mới</h2>
+			</div>
+			<div class="row">
+				<form action="#" th:action="@{/addCourse/} + ${student.idStudent}" method="post">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Tên Khóa Học</th>
+								<th>Giá</th>
+								<th>Đăng Kí</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="course : ${listCourse}">
+								<td><p th:text="${course.idCourse}"></p></td>
+								<td><p th:text="${course.name}"></p></td>
+								<td><p th:text="${course.price}"></p></td>
+								<td><input type="checkbox" name="listC[]"
+									th:value="${course.idCourse}" /> <label>Chọn</label></td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="submit" value="submit"
+						class="btn btn-success pull-right">Đăng Ký</button>
+				</form>
+			</div>
+	</div>
 	<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

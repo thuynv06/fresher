@@ -38,11 +38,12 @@ public class StudentService {
 		if (student != null) {
 			studentDAO.delete(student);
 		}
-
 	}
-	public List<Course> getStudentCourse(final int id){
-		return studentDAO.getStudentCourse(id);
+	public List<Course> getlistCourse(final int id){
+		return studentDAO.getlistCourse(id);
 	}
-
-
+	
+	public void addCourse(final int id, List<Course> course) {
+		studentDAO.addCourse(id, course);
+	}
 }

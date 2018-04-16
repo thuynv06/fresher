@@ -74,7 +74,7 @@ public class Student  {
 	public void setIdStudent(int idStudent) {
 		this.idStudent = idStudent;
 	}
-
+	
 	public List<Course> getCourse() {
 		return course;
 	}
@@ -126,24 +126,5 @@ public class Student  {
 		this.phone = phone;
 	}
 	
-//	@Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-// 
-//        Student student = (Student) o;
-// 
-//        if (!idStudent.equals(student.idStudent)) {
-//        	return false;
-//        }
-//        return name.equals(student.name);
-//    }
-// 
-//    @Override
-//    public int hashCode() {
-//        int result = idStudent.hashCode();
-//        result = 31 * result + name.hashCode();
-//        return result;
-//    }
 
 }
