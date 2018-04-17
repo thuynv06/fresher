@@ -82,55 +82,6 @@ public class StudentController {
 		return "redirect:/student-list";
 	}
 
-	// lay danh sach khoa hoc
-	@RequestMapping(value = { "/student-course/{id}" })
-	public String getListStudent(@PathVariable int id, Model model) {
-		model.addAttribute("student", studentService.findById(id));
-		model.addAttribute("listC", studentService.getlistCourse(id));
-		model.addAttribute("listCourse", courseService.findAll());
-		return "student/student_course";
-	}
 
-	@RequestMapping(value = "/addCourse/{id}", method = RequestMethod.POST)
-	public String action(@PathVariable int id, @RequestParam("listC[]") int[] listC, Model model) {
-		// Student s = studentService.findById(id);
-		// for (int i = 0; i < listC.length; i++) {// length is the property of array
-		// System.out.println(listC[i]);
-		// }
-		List<Course> listCourse = new ArrayList<Course>();
-		for (int i = 0; i < listC.length; i++) {
-			 
-			System.out.println(listC[i]);
-			listCourse.add(courseService.findById(listC[i]));
-		}
-		studentService.addCourse(id, listCourse);
-
-		model.addAttribute("student", studentService.findById(id));
-		model.addAttribute("listC", studentService.getlistCourse(id));
-		model.addAttribute("listCourse", courseService.findAll());
-		return "student/student_course";
-
-		// Transaction transaction = null;
-		// try {
-		// transaction = session.beginTransaction();
-		//
-		// Set<Course> courses = new HashSet<Course>();
-		// courses.add(new Course("Maths"));
-		// courses.add(new Course("Computer Science"));
-		//
-		// Student student1 = new Student("Eswar", courses);
-		// Student student2 = new Student("Joe", courses);
-		// session.save(student1);
-		// session.save(student2);
-		//
-		// transaction.commit();
-		// } catch (HibernateException e) {
-		// transaction.rollback();
-		// e.printStackTrace();
-		// } finally {
-		// session.close();
-		// }
-
-	}
 
 }

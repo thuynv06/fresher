@@ -31,7 +31,7 @@ public class StudentDAO {
 
 	public Student findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Student s= session.get(Student.class, id);
+//		Student s= session.get(Student.class, id);
 		return session.get(Student.class, id);
 	}
 

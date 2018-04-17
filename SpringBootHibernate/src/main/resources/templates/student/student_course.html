@@ -32,7 +32,7 @@
 									view students </span></a></td>
 						<td><a th:href="@{/course-view/} + ${c.idCourse}"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-						<td><a th:href="@{/courseDelete/} + ${c.idCourse}"><span
+						<td><a th:href="@{/removeCourse/} + ${c.idCourse}" ><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</tbody>
@@ -46,7 +46,7 @@
 				<h2>Khóa Học Mới</h2>
 			</div>
 			<div class="row">
-				<form action="#" th:action="@{/addCourse/} + ${student.idStudent}" method="post">
+				<form  th:action="@{/addCourse/} + ${student.idStudent}" method="post">
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
