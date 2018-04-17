@@ -38,7 +38,7 @@ public class Student  {
 	@Column(name = "phone")
 	private String phone;
 
-	
+		
 	public Student(String studentName) {
 		this.name = studentName;
 	
@@ -66,7 +66,10 @@ public class Student  {
 	public Student() {
 
 	}
-
+	public List<Course> removeCourse(List<Course>  list,Course Course){
+		list.remove(Course);
+		return list;
+	}
 	public int getIdStudent() {
 		return idStudent;
 	}

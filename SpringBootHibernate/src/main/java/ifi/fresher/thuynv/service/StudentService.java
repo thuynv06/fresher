@@ -46,4 +46,7 @@ public class StudentService {
 	public void addCourse(final int id, List<Course> course) {
 		studentDAO.addCourse(id, course);
 	}
+	public void removeCourse(final int idS,final int idC ) {
+		studentDAO.removeCourse(idS, idC);
+	}
 }

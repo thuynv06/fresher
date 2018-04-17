@@ -57,9 +57,13 @@ public class StudentDAO {
 	public void addCourse(final int id, List<Course> course) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.get(Student.class, id).setCourse(course);
+		
 	}
-	
-
-
-
+	public void removeCourse(final int idS,final int idC ) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Student s=session.get(Student.class, idS);
+		List<Course> l=s.getCourse();
+		Course c= session.get(Course.class, idC);
+		s.removeCourse(l, c);
+	}
 }

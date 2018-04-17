@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ifi.fresher.thuynv.entities.Course;
+import ifi.fresher.thuynv.entities.Student;
 import ifi.fresher.thuynv.service.CourseService;
 import ifi.fresher.thuynv.service.StudentService;
 
@@ -50,10 +51,10 @@ public class MainController {
 		studentService.addCourse(id,lc);	
 		return "redirect:/student-course/"+id;
 	}
-	@RequestMapping(value = { "/courseRemove/{id}" })
-	public String removeCourse(@PathVariable int id, Model model) {
-		
-		return "redirect:/student-course/"+id;
+	@RequestMapping(value = { "/removeCourse/{idC}/{idStu}" })
+	public String removeCourse(@PathVariable int idC,@PathVariable int idStu, Model model) {
+		studentService.removeCourse(idStu, idC);
+		return "redirect:/student-course/"+idStu;
 	}
 	
 }
