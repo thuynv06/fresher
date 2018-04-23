@@ -33,6 +33,7 @@ public class StudentDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 //		Student s= session.get(Student.class, id);
 		return session.get(Student.class, id);
+
 	}
 
 	public void delete(final Student student) {
@@ -42,11 +43,20 @@ public class StudentDAO {
 
 	public List<Student> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
+		//session.createQuery("Select * from Student ")
 		List<Student> s=session.createQuery("FROM Student", Student.class).getResultList();	
 //		List<Course>  c=s.get(0).getCourse();
+		
 		return s;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Student> findListStudent(){
+		//HibernateUtil.getSessionFactory().openSession();
+		Session session = this.sessionFactory.openSession();
+		return session.createQuery("Select student.idStudent,student.name,student.age,student.phone,student.address from student").getResultList();
+		
+	}
 	public List<Course> getlistCourse(final int id){
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Course> c= session.get(Student.class, id).getCourse();	

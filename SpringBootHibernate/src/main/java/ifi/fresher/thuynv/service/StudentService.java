@@ -49,4 +49,8 @@ public class StudentService {
 	public void removeCourse(final int idS,final int idC ) {
 		studentDAO.removeCourse(idS, idC);
 	}
+	
+	public List<Student> findListStudent(){
+		return studentDAO.findListStudent();
+	}
 }

@@ -92,7 +92,6 @@ public class Student  {
 		this.age = age;
 		this.address = address;
 		this.phone = phone;
-
 	}
 
 	// getter - setter
@@ -129,5 +128,4 @@ public class Student  {
 		this.phone = phone;
 	}
 	
-
 }
