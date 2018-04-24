@@ -13,13 +13,32 @@ import { StudentService } from './shared/students/student.service';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CourseService } from './shared/course/course.service';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CarEditComponent } from './car-edit/car-edit.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
+const appRoutes:Routes=[
+  {path:'',redirectTo:'/car-list',pathMatch:'full'},
+  {
+    path:'car-list',
+    component:CarListComponent
+  },
+  {
+    path:'car-add',
+    component:CarEditComponent
+  },
+  {
+    path:'car-edit/:id',
+    component:CarEditComponent
+  }
+];
 @NgModule({
   declarations: [
     AppComponent,
     CarListComponent,
     StudentListComponent,
-    CourseListComponent
+    CourseListComponent,
+    CarEditComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +52,8 @@ import { CourseListComponent } from './course-list/course-list.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [CarService,GiphyService,StudentService,CourseService],
   bootstrap: [AppComponent]

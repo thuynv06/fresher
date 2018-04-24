@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <section>
+        <header class="header">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Student List</h1>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary" (click)="redirectNewStudentPage()">New Student</button>
+            </div>
+          </div>
+
+        </header>
+      </section>
+
+      <section class="main">
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Phone</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let student of students">
+            <th scope="row">{{student.idStudent}}</th>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.address}}</td>
+            <td>{{student.phone}}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="editStudentPage(student)">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="deleteStudent(student)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</div>
