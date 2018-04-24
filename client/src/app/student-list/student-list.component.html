@@ -1,5 +1,4 @@
 <h2>Student List</h2>
-
 <div>
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
@@ -22,4 +21,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+   <button mat-fab color="primary">Add</button>
 </div>

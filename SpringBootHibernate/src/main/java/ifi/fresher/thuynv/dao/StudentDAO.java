@@ -3,6 +3,12 @@ package ifi.fresher.thuynv.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +37,8 @@ public class StudentDAO {
 
 	public Student findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-//		Student s= session.get(Student.class, id);
-		return session.get(Student.class, id);
+		Student s= session.get(Student.class, id);
+		return s;
 
 	}
 
@@ -43,8 +49,10 @@ public class StudentDAO {
 
 	public List<Student> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		//session.createQuery("Select * from Student ")
+//		List<Student> s=session.createQuery("SELECT s FROM Student s JOIN FETCH s.course ").getResultList();	
+
 		List<Student> s=session.createQuery("FROM Student", Student.class).getResultList();	
+		
 //		List<Course>  c=s.get(0).getCourse();
 		
 		return s;

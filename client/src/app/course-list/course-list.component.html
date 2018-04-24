@@ -1,0 +1,19 @@
+<h2>Course List</h2>
+<div>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="idCourse">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let course"> {{course.idCourse}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let course">{{course.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let course"> {{course.price}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

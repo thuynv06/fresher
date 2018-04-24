@@ -1,24 +1,26 @@
 package ifi.fresher.thuynv.entities;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "course")
-
+@JsonIgnoreProperties(value= {"student"})
 public class Course {
 
 	@Id
@@ -30,7 +32,7 @@ public class Course {
 	@Column(name = "price")
 	private float price;
 
-	@ManyToMany(mappedBy = "course")
+	@ManyToMany(fetch=FetchType.LAZY,mappedBy = "course")
 	private List<Student> student;
 
 

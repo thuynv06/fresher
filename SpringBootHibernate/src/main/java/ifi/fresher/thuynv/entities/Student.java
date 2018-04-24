@@ -1,9 +1,8 @@
 package ifi.fresher.thuynv.entities;
 
-import java.io.Serializable;
-import java.util.Collection;
+
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,13 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.CascadeType;
 import ifi.fresher.thuynv.entities.Course;
 
 @Entity
 @Table(name = "student")
+@JsonIgnoreProperties(value= {"course"})
 public class Student  {
 
 	@Id
@@ -44,7 +44,7 @@ public class Student  {
 	
 	}
 
-	@ManyToMany( cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "course_id") })
 //	private Collection<Course> c;

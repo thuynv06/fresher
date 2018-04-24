@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService} from '../student.service';
+import { StudentService} from '../shared/students/student.service';
 import { Observable } from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
 import { Student } from '../models/student.model';
@@ -22,5 +22,5 @@ export class StudentDataSource extends DataSource<any> {
   connect(): Observable<Student[]> {
     return this.studentService.getStudent();
   }
-  disconnect() {}
+  disconnect() {};
 }

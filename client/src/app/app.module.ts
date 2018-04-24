@@ -9,15 +9,17 @@ import { GiphyService } from './shared/giphy/giphy.service';
 import { AppComponent } from './app.component';
 import { CarService } from './car.service';
 import { CarListComponent } from './car-list/car-list.component';
-import { StudentService } from './student.service';
+import { StudentService } from './shared/students/student.service';
 import { StudentListComponent } from './student-list/student-list.component';
-
+import { CourseService } from './shared/course/course.service';
+import { CourseListComponent } from './course-list/course-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarListComponent,
-    StudentListComponent
+    StudentListComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,7 @@ import { StudentListComponent } from './student-list/student-list.component';
     MatSortModule,
     MatProgressSpinnerModule
   ],
-  providers: [CarService,GiphyService,StudentService],
+  providers: [CarService,GiphyService,StudentService,CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

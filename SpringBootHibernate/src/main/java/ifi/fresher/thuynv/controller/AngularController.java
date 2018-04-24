@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import ifi.fresher.thuynv.entities.Course;
 import ifi.fresher.thuynv.entities.Student;
 import ifi.fresher.thuynv.service.CourseService;
 import ifi.fresher.thuynv.service.StudentService;
@@ -20,17 +22,27 @@ class AngularController {
 	@Autowired
 	private CourseService courseService;
 	
-	@GetMapping("/list")
+	@GetMapping("/listStudent")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Student> listStudent(){
 		List<Student> listStu= studentService.findAll();
-		
-		for (Student s:listStu) {
-			s.setCourse(null);
-		}
+//		
+//		for (Student s:listStu) {
+//			s.setCourse(null);
+//		}
 		return listStu;
 	}
+	@GetMapping("/listCourse")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public List<Course> listCourse(){
+		List<Course> listC= courseService.findAll();
+//		for (Course c:listC) {
+//			c.setStudent(null);
+//		}
+		return listC;
+	}
 	
+
 	
 	
 }

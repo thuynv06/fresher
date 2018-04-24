@@ -73,6 +73,7 @@ public class StudentController {
 		model.addAttribute("listStudent", studentService.findAll());
 		return "redirect:student-list";
 	}
+	
 
 	@RequestMapping("/updateStudent")
 	public String doUpdateStudent(@ModelAttribute("Student") Student student, Model model) {
