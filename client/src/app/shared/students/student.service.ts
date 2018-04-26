@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Student } from '../../models/student.model';
 @Injectable()
 export class StudentService {
- private serviceUrl = '//localhost:3333/listStudent';
+ private serviceUrl = '//localhost:3333/students';
  constructor(private http: HttpClient) {
   }
 

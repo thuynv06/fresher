@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../car.service';
@@ -10,8 +10,8 @@ import { NgForm } from '@angular/forms';
   templateUrl: './car-edit.component.html',
   styleUrls: ['./car-edit.component.css']
 })
-export class CarEditComponent implements OnInit,OnDestroy {
-  car:any={};
+export class CarEditComponent implements OnInit,OnDestroy{
+  car:any= {};
   sub: Subscription;
 
   constructor(private route:ActivatedRoute,
@@ -38,7 +38,7 @@ export class CarEditComponent implements OnInit,OnDestroy {
       }
     });
   }
-  ngOnDestroy(){
+ngOnDestroy(){
     this.sub.unsubscribe();
 
   }

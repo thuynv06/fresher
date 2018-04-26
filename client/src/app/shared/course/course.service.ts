@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Course } from '../../models/course.model';
 @Injectable()
 export class CourseService {
-  private serviceUrl1 = '//localhost:3333/listCourse';
+  private serviceUrl1 = '//localhost:3333/courses';
   constructor(private http: HttpClient)
   {}
   getCourse(): Observable<Course[]> {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from "../student.service";
 import { Student } from "../Student";
 import { Router} from '@angular/router';
+import {Course} from ".../course/Course";
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -10,8 +11,10 @@ import { Router} from '@angular/router';
 })
 export class StudentListComponent implements OnInit {
   private students: Student[];
+  private courses: Course[];
   constructor(private router:Router,
-    private studentService: StudentService) { }
+  private studentService: StudentService) {
+   }
 
   ngOnInit() {
     this.getAllStudent();
@@ -44,5 +47,16 @@ export class StudentListComponent implements OnInit {
         }
       );
     }
+  }
+
+  getCourse(student:Student){
+    this.studentService.getCourse(student.idStudent).subscribe(
+      courses=>{
+        this.courses = courses;
+      },error =>{
+        console.log(error);
+      }
+    );
+    this.router.navigate(['/student/course']);
   }
 }

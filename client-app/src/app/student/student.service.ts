@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 import {Student} from "./Student";
 @Injectable()
 export class StudentService {
-  private apiUrl=  '//localhost:8888/students';
+  private apiUrl=  '//localhost:3333/student';
   constructor(private http: Http) { }
   findAll():Observable<Student[]>{
     return this.http.get(this.apiUrl)
@@ -34,5 +34,10 @@ export class StudentService {
     return this.http.put(this.apiUrl, student)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getCourse(id: number):Observable<Student>{
+    return this.http.get(this.apiUrl + '/student-course/' + id)
+        .map((res:Response) => res.json())
+        .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
 }
