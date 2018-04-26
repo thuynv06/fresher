@@ -1,5 +1,4 @@
-package ifi.fresher.thuynv.service;
-
+package com.ifi.frehser.service;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import ifi.fresher.thuynv.dao.StudentDAO;
-import ifi.fresher.thuynv.entities.Course;
-import ifi.fresher.thuynv.entities.Student;
+import com.ifi.frehser.DAO.StudentDAO;
+import com.ifi.frehser.entities.Course;
+import com.ifi.frehser.entities.Student;
+
 
 @Service
 @Transactional

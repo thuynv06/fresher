@@ -30,6 +30,7 @@ export class StudentCreateComponent implements OnInit,OnDestroy {
       address: new FormControl('',Validators.required),
       phone: new FormControl('',Validators.required)
     });
+    // edit student
     if(this.idStudent){
       this.studentService.findById(this.idStudent).subscribe(
         student =>{

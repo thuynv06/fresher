@@ -39,7 +39,6 @@ public class StudentController {
 	private CourseService courseService;
 
 	@GetMapping(value = { "/student-list" })
-	@CrossOrigin(origins="http://localhost:4200")
 	public List<Student> listStudent() {
 //		model.addAttribute("listStudent", studentService.findAll());
 //		return "student/student-list";
@@ -54,7 +53,7 @@ public class StudentController {
 
 	@RequestMapping(value = { "/student/{id}" })
 	@CrossOrigin(origins="http://localhost:4200")
-	public Student viewStuden(@PathVariable int id ) {
+	public Student viewStudent(@PathVariable int id ) {
 //		Student student = studentService.findById(id);
 //		model.addAttribute("student", student);
 		return studentService.findById(id);

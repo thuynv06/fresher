@@ -1,29 +1,26 @@
-package ifi.fresher.thuynv.controller;
-
+package com.ifi.frehser.controller;
 
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.ifi.frehser.entities.Course;
+import com.ifi.frehser.entities.Student;
+import com.ifi.frehser.service.CourseService;
+import com.ifi.frehser.service.StudentService;
 
-
-import ifi.fresher.thuynv.entities.Course;
-import ifi.fresher.thuynv.entities.Student;
-import ifi.fresher.thuynv.service.CourseService;
-import ifi.fresher.thuynv.service.StudentService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value="/students")
-class AngularController {
+class StudentController {
 	@Autowired
 	private StudentService studentService;
 	@Autowired
@@ -34,12 +31,11 @@ class AngularController {
 		List<Student> listStu= studentService.findAll();
 		return listStu;
 	}
-	@GetMapping("/listCourse")
-	@CrossOrigin(origins = "http://localhost:4200")
-	public List<Course> listCourse(){
-		List<Course> listC= courseService.findAll();
-		return listC;
-	}
+//	@GetMapping("/listCourse")
+//	public List<Course> listCourse(){
+//		List<Course> listC= courseService.findAll();
+//		return listC;
+//	}
 	@RequestMapping(value = "/{idStudent}", method = RequestMethod.GET)
 	public Student getStudent(@PathVariable("idStudent") int id) {
 		return studentService.findById(id);
@@ -63,6 +59,5 @@ class AngularController {
 	public void updateStudent(@RequestBody Student student) {
 		studentService.update(student);
 	}
-	
-	
+		
 }

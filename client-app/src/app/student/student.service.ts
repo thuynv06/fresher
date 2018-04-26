@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 import {Student} from "./Student";
 @Injectable()
 export class StudentService {
-  private apiUrl=  '//localhost:3333/listStudent';
+  private apiUrl=  '//localhost:8888/students';
   constructor(private http: Http) { }
   findAll():Observable<Student[]>{
     return this.http.get(this.apiUrl)
@@ -18,8 +18,9 @@ export class StudentService {
         .map((res:Response) => res.json())
         .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
-  saveStudent(Student: Student): Observable<Student> {
-    return this.http.post(this.apiUrl, Student)
+  saveStudent(student: Student): Observable<Student> {
+    console.log(this.apiUrl);
+    return this.http.post(this.apiUrl, student)
        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
@@ -30,7 +31,7 @@ export class StudentService {
   }
 
   updateStudent(student: Student): Observable<Student> {
-    return this.http.put(this.apiUrl, Student)
+    return this.http.put(this.apiUrl, student)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
