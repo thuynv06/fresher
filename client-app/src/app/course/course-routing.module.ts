@@ -5,7 +5,8 @@ import { CourseCreateComponent } from './course-create/course-create.component'
 const routes: Routes = [
   {path:'course',component: CourseListComponent},
   {path:'course/create', component:CourseCreateComponent},
-  {path:'course/edit/:id',component:CourseCreateComponent}
+  {path:'course/edit/:id',component:CourseCreateComponent},
+  {path:'course/student-course/:id',component:CourseListComponent}
 ];
 
 @NgModule({

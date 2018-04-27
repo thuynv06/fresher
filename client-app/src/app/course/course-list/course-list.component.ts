@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from "../Course";
 import {CourseService} from "../course.service";
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
@@ -9,13 +9,30 @@ import { Router } from '@angular/router';
   providers: [CourseService]
 })
 export class CourseListComponent implements OnInit {
+  idStudent:number;
   private courses: Course[];
+  private sub: any;
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private courseService : CourseService) { }
+    private courseService : CourseService ,
+
+    ){}
 
   ngOnInit() {
-    this.getAllCourse();
+    this.sub = this.route.params.subscribe( params =>{
+      this.idStudent =params['id'];
+    });
+    if(this.idStudent){
+      this.courseService.getStudentCourse(this.idStudent).subscribe(
+        courses =>{
+          this.courses=courses;
+        },error =>{console.log(error)}
+      );
+    }else{
+        this.getAllCourse();
+    }
+
   }
   getAllCourse(){
     this.courseService.findAll().subscribe(
@@ -44,5 +61,8 @@ export class CourseListComponent implements OnInit {
      );
    }
   }
-
+  getStudentListOfCourse(course: Course){
+    console.log(this.route);
+    this.router.navigate(['/student/StudentListOfCourse/'+ course.idCourse]);
+  }
 }

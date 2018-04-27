@@ -36,6 +36,7 @@
             <td>{{course.name}}</td>
             <td>{{course.price}}</td>
             <td>
+              <button type="button" class="btn btn-danger" (click)="getStudentListOfCourse(course)">Students List of Course</button>
               <button type="button" class="btn btn-success" (click)="editCoursePage(course)">Edit</button>
              <button type="button" class="btn btn-danger" (click)="deleteCourse(course)">Delete</button>
             </td>

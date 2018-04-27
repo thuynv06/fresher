@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.Course;
 import com.example.demo.entities.Student;
 import com.example.demo.service.CourseService;
+import com.example.demo.service.StudentService;
 
 
 
@@ -24,7 +25,8 @@ import com.example.demo.service.CourseService;
 class CourseController {
 	@Autowired
 	private CourseService courseService;
-	
+	@Autowired
+	private StudentService studentService;
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Course> findAll(){
 		List<Course> listC= courseService.findAll();
@@ -52,5 +54,9 @@ class CourseController {
 	public void updateCourse(@RequestBody Course course) {
 		courseService.update(course);
 	}
-	
+	@RequestMapping(value = { "/student-course/{id}" },method = RequestMethod.GET)
+	public List<Course> getStudentCourse(@PathVariable int id) { 
+		List<Course> listC = studentService.getlistCourse(id);
+		return listC;
+	}
 }

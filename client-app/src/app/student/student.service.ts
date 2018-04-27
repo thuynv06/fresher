@@ -35,9 +35,9 @@ export class StudentService {
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getCourse(id: number):Observable<Student>{
-    return this.http.get(this.apiUrl + '/student-course/' + id)
-        .map((res:Response) => res.json())
-        .catch((error:any) => Observable.throw(error.json().error || 'Error'));
+  getStudentListOfCourse(idCourse:number):Observable<Student[]>{
+    return this.http.get(this.apiUrl + '/course-student/'+ idCourse)
+    .map((res.Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
 }

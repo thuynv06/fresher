@@ -8,7 +8,7 @@ const routes: Routes = [
   {path:'student',component: StudentListComponent},
   {path:'student/create',component:StudentCreateComponent},
   {path:'student/edit/:id',component:StudentCreateComponent},
-  {path:'student/course', component:CourseListComponent},
+  {path:'student/StudentListOfCourse/:id',component:StudentListComponent}
 ];
 
 @NgModule({

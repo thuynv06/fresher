@@ -37,4 +37,10 @@ export class CourseService {
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
      }
+     getStudentCourse(idStudent: number):Observable<Course[]>{
+       console.log(this.apiUrl + '/student-course/' + idStudent)
+       return this.http.get(this.apiUrl + '/student-course/' + idStudent)
+         .map((res:Response) => res.json())
+         .catch((error:any) => Observable.throw(error.json().error || 'Error'));
+     }
 }

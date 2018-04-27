@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Course;
 import com.example.demo.entities.Student;
+import com.example.demo.service.CourseService;
 import com.example.demo.service.StudentService;
 
 @RestController
@@ -22,6 +23,8 @@ class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired
+	private CourseService courseService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Student> findAll(){
@@ -51,9 +54,10 @@ class StudentController {
 	public void updateStudent(@RequestBody Student student) {
 		studentService.update(student);
 	}
-	@RequestMapping(value = { "/student-course/{id}" },method = RequestMethod.GET)
-	public List<Course> getCourse(@PathVariable int id) { 
-		List<Course> listC = studentService.findById(id).getCourse();
-		return listC;
+	@RequestMapping(value = { "/course-student/{id}" },method = RequestMethod.GET)
+	public List<Student> getStudentCourse(@PathVariable int id) { 
+		List<Student> listS = courseService.getListStudent(id);
+		return listS;
 	}
+	
 }
