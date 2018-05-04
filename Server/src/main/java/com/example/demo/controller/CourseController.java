@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Course;
-import com.example.demo.entities.Student;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.StudentService;
 

@@ -2,6 +2,17 @@
 <mat-toolbar color="primary">
   <span>Welcome to {{title}}!</span>
 </mat-toolbar>
+
+<div class="navbar navbar-default">
+  <div class="navbar-nav-scroll">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/student-list" routerLinkActive="active">Manage Students</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/course-list" routerLinkActive="active">Manage Course</a>
+      </li>
+    </ul>
+  </div>
+</div>
 <router-outlet></router-outlet>
-<app-student-list></app-student-list>
-<app-course-list></app-course-list>

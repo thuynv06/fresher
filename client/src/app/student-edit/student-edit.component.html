@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col">
       <section>
@@ -18,7 +18,6 @@
                      formControlName="age">
             </div>
           </fieldset>
-
           <div class="form-group">
             <label>Address</label>
             <input type="text"
@@ -31,7 +30,6 @@
                    class="form-control"
                    formControlName="phone">
           </div>
-
           <button type="submit" class="btn btn-primary"  [disabled]="!studentForm.valid" >Submit</button>
           <button type="button" class="btn btn-warning" (click)="redirectStudentPage()">Cancel</button>
           <pre>{{studentForm.value | json}}</pre>
@@ -39,7 +37,4 @@
       </section>
     </div>
   </div>
-</div> -->
-
-<li><p> FullName: {{name}}</p></li>
-<li><p> Age: {{age}} </p></li>
+</div>

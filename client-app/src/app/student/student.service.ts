@@ -37,7 +37,7 @@ export class StudentService {
   }
   getStudentListOfCourse(idCourse:number):Observable<Student[]>{
     return this.http.get(this.apiUrl + '/course-student/'+ idCourse)
-    .map((res.Response) => res.json())
+    .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
 }

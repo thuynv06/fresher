@@ -4,7 +4,7 @@
     <ng-container matColumnDef="check">
       <mat-header-cell *matHeaderCellDef> Choose </mat-header-cell>
       <mat-cell *matCellDef="let course">
-        <mat-checkbox>Check me!</mat-checkbox>
+        <mat-checkbox value="{{course.idCourse}}">Check me!</mat-checkbox>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="idCourse">
@@ -22,4 +22,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <button mat-raised-button > Đăng Kí </button>
 </div>

@@ -1,50 +1,58 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule,MatCheckboxModule, } from '@angular/material';
 import {  MatPaginatorModule, MatProgressSpinnerModule,
          MatSortModule, MatTableModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GiphyService } from './shared/giphy/giphy.service';
 import { AppComponent } from './app.component';
-import { CarService } from './car.service';
-import { CarListComponent } from './car-list/car-list.component';
+//import { CarService } from './car.service';
+//import { CarListComponent } from './car-list/car-list.component';
 import { StudentService } from './shared/students/student.service';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CourseService } from './shared/course/course.service';
 import { CourseListComponent } from './course-list/course-list.component';
-import { CarEditComponent } from './car-edit/car-edit.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-
+import {  ReactiveFormsModule } from '@angular/forms';
+import {TakeCourseComponent} from './take-course/take-course.component';
 const appRoutes:Routes=[
-  {path:'',redirectTo:'/car-list',pathMatch:'full'},
+  {path:'',redirectTo:'/student-list',pathMatch:'full'},
   {
-    path:'car-list',
-    component:CarListComponent
+    path:'student-list',
+    component:StudentListComponent
   },
   {
-    path:'car-add',
-    component:CarEditComponent
+    path:'course-list',
+    component:CourseListComponent
   },
   {
-    path:'car-edit/:id',
-    component:CarEditComponent
+    path:'take-course/:id',
+    component:TakeCourseComponent
+  },
+  {
+    path:'student-view/:id',
+    component:StudentEditComponent
   }
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    CarListComponent,
     StudentListComponent,
     CourseListComponent,
-    CarEditComponent
+    StudentEditComponent,
+    TakeCourseComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule,
@@ -55,7 +63,7 @@ const appRoutes:Routes=[
     MatProgressSpinnerModule,FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CarService,GiphyService,StudentService,CourseService],
+  providers: [GiphyService,StudentService,CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

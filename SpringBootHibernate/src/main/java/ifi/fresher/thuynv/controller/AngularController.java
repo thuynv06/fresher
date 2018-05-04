@@ -22,25 +22,25 @@ import ifi.fresher.thuynv.service.StudentService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value="/students")
+@RequestMapping(value="/")
 class AngularController {
 	@Autowired
 	private StudentService studentService;
 	@Autowired
 	private CourseService courseService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping(value="/students")
 	public List<Student> findAll(){
 		List<Student> listStu= studentService.findAll();
 		return listStu;
 	}
-	@GetMapping("/listCourse")
+	@GetMapping("/courses")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Course> listCourse(){
 		List<Course> listC= courseService.findAll();
 		return listC;
 	}
-	@RequestMapping(value = "/{idStudent}", method = RequestMethod.GET)
+	@RequestMapping(value = "students/{idStudent}", method = RequestMethod.GET)
 	public Student getStudent(@PathVariable("idStudent") int id) {
 		return studentService.findById(id);
 	}

@@ -1,8 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav>
+<!-- <nav>
   <a routerLink="/student" routerLinkActive="active">Students</a>
   <a routerLink="/course" routerLinkActive="active">Courses</a>
   <a routerLink="/student/create" routerLinkActive="active">New Students</a>
-</nav>
+</nav> -->
 
-<router-outlet></router-outlet>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3>Client-App Demo</h3>
+  </div>
+  <div class="panel-body">
+    <!-- <a class="link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a> -->
+    <a class="link" routerLink="/student" routerLinkActive="active menu">Manage Students</a>
+    <a class="link" routerLink="/course" routerLinkActive="active menu">Manage Course</a>
+  </div>
+  <div class="panel-footer">
+    <router-outlet></router-outlet>
+  </div>
+  <hr>
+</div>
+<div>
+
+</div>
+  <app-home></app-home>
