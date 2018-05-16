@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit,OnDestroy,Input } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { StudentService} from '../shared/students/student.service';
 import { Student } from '../models/student.model';
@@ -13,6 +13,9 @@ export class StudentEditComponent implements OnInit,OnDestroy {
   idStudent: number;
   student:Student;
   studentForm :FormGroup;
+  @Input() name: string;
+  @Input() age: number;
+  @Input() address: string;
   private sub: any;
   constructor(
     private route: ActivatedRoute,
