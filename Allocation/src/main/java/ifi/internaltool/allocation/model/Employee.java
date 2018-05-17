@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table	
 public class Employee {
 	@PrimaryKey
-	private long user_id;
+	private UUID user_id;
 	private long group_id;
 	private String name;
 	private int age;
@@ -21,20 +21,33 @@ public class Employee {
 	public Employee(){
 		
 	}
+	public Employee(final UUID user_id, final long group_id, final String name, final int age, final String address,
+			final Map<String,String> reference) {
+		this.user_id = user_id;
+		this.group_id= group_id;
+		this.name= name;
+		this.age= age;
+		this.address= address;
+		this.reference= reference;
+		
+	}
 	
 	
 	
-	
-	public long getUser_id() {
+
+
+	public UUID getUser_id() {
 		return user_id;
 	}
 
 
 
 
-	public void setUser_id(long user_id) {
+
+	public void setUser_id(UUID user_id) {
 		this.user_id = user_id;
 	}
+
 
 
 
