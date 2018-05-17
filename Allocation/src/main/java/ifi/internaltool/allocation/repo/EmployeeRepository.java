@@ -15,7 +15,7 @@ public interface EmployeeRepository extends  CassandraRepository<Employee,String
 
 
 
-	@Query(value="SELECT * FROM employee WHERE name=?0")
+	@AllowFiltering
 	public List<Employee> findByName(String name);
 	
 	@Query(value="SELECT * FROM employee WHERE user_id=?0")

@@ -38,7 +38,6 @@
             <td>{{student.address}}</td>
             <td>{{student.phone}}</td>
             <td>
-              <app-student-create [name]="student.name" [age]="student.age"></app-student-create>
               <button type="button" class="btn btn-danger" (click)="getStudentCourse(student)"> Views Course</button>
               <button type="button" class="btn btn-success" (click)="editStudentPage(student)">Edit</button>
         <button type="button" class="btn btn-danger" (click)="deleteStudent(student)">Delete</button>
