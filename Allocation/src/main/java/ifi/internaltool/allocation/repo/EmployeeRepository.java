@@ -19,7 +19,7 @@ public interface EmployeeRepository extends  CassandraRepository<Employee,String
 	public List<Employee> findByName(String name);
 	
 	@Query(value="SELECT * FROM employee WHERE user_id=?0")
-	public Employee findById(MapId id);
+	public Employee findById(UUID id);
 	
 	
 }

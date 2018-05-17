@@ -26,14 +26,13 @@ public class EmployeeService  {
 	
 	@Autowired 
 	private EmployeeRepository employeeRepository;
-	
+	// get All Employees
 	public List<Employee> getAllEmployees(){	
 		System.out.println("Get all Employees...");
-		//List<Employee> list_emp = new ArrayList<>();
-		//employeeRepository.findAll().forEach(list_emp::add);
 		return (List<Employee>) employeeRepository.findAll();	
 	}
 	
+	// create Employees
 	public Employee createEmployee(final Employee emp) {
 		System.out.println("Create Employees: " + emp.getName() + "...");
 		emp.setUser_id(UUIDs.timeBased());
@@ -47,7 +46,7 @@ public class EmployeeService  {
 	
 	public Employee findById(final UUID id) {
 		System.out.println("Find Employees with id: " + id + "...");
-		Employee emp=employeeRepository.findById(BasicMapId.id("id", id));
+		Employee emp=employeeRepository.findById(id);
 		if( emp == null) {
 			return null;
 		}
@@ -56,7 +55,7 @@ public class EmployeeService  {
 	
 	public void updateEmployee(final UUID id,Employee emp) {
 		System.out.println("Update Customer with ID = " + id + "...");
-		Employee emp_data=employeeRepository.findById(BasicMapId.id("id", id));
+		Employee emp_data=employeeRepository.findById( id);
 		if( emp == null) {
 			
 		}
