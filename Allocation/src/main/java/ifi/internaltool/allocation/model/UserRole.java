@@ -2,13 +2,17 @@ package ifi.internaltool.allocation.model;
 
 import java.util.UUID;
 
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 
 public class UserRole {
 	@PrimaryKey
 	private UUID id;
-	
+	@PrimaryKeyColumn(name = "user_id", type = PrimaryKeyType.PARTITIONED)
 	private UUID user_id;
+	@PrimaryKeyColumn(name = "role_id", type = PrimaryKeyType.PARTITIONED)
+
 	private int role_id;
 	public UUID getId() {
 		return id;

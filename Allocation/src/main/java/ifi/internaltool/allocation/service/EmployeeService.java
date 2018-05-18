@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.datastax.driver.core.utils.UUIDs;
 
+import ifi.internaltool.allocation.DAO.EmployeeDAO;
 import ifi.internaltool.allocation.model.Employee;
-import ifi.internaltool.allocation.repo.EmployeeRepository;
 
 
 @Service
 public class EmployeeService  {
 	
 	@Autowired 
-	private EmployeeRepository employeeRepository;
+	private EmployeeDAO employeeDAO;
 	// get All Employees
 	public List<Employee> getAllEmployees(){	
 		System.out.println("Get all Employees...");
-		return (List<Employee>) employeeRepository.findAll();	
+		return (List<Employee>)employeeDAO.findAll();	
 	}
 	
 	// create Employees
 	public Employee createEmployee(final Employee emp) {
 		System.out.println("Create Employees: " + emp.getName() + "...");
 		emp.setUser_id(UUIDs.timeBased());
-		Employee employee=employeeRepository.save(emp);
+		Employee employee=employeeDAO.save(emp);
 		return employee;
 	}
 	
 	public List<Employee> findEmployeeByName(String name){
-		return employeeRepository.findByName(name);
+		return employeeDAO.findByName(name);
 	}
 	
 	public Employee findById(final UUID id) {
 		System.out.println("Find Employees with id: " + id + "...");
-		Employee emp=employeeRepository.findById(id);
+		Employee emp=employeeDAO.findById(id);
 		if( emp == null) {
 			return null;
 		}
@@ -54,15 +54,21 @@ public class EmployeeService  {
 	}
 	
 	public void updateEmployee(final UUID id,Employee emp) {
-		System.out.println("Update Customer with ID = " + id + "...");
-		Employee emp_data=employeeRepository.findById( id);
+		System.out.println("Update Employess with ID = " + id + "...");
+		Employee emp_data=employeeDAO.findById( id);
 		if( emp == null) {
 			
 		}
 		emp_data.setName(emp.getName());
 		emp_data.setAge(emp.getAge());
 		emp_data.setAddress(emp.getAddress());
-		employeeRepository.save(emp_data);
+		employeeDAO.save(emp_data);
 		
 	}
+	public void deleteEmployee(final UUID id) {
+		System.out.println("Delete Employee with ID = " + id + "...");
+		employeeDAO.deleteById(id);	
+	}
+	
+	
 }

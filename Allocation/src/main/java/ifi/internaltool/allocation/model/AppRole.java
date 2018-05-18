@@ -1,12 +1,14 @@
 package ifi.internaltool.allocation.model;
 
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 @Table
 public class AppRole {
      
-	@PrimaryKey
+	@PrimaryKeyColumn(name = "role_id", type = PrimaryKeyType.PARTITIONED)
     private int role_id;
 	
     private String role_name;

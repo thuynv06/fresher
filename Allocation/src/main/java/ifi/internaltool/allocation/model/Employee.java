@@ -3,25 +3,35 @@ package ifi.internaltool.allocation.model;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.Indexed;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 @Table	
 public class Employee {
-	@PrimaryKey
+	@PrimaryKeyColumn(name = "user_id", type = PrimaryKeyType.PARTITIONED)
 	private UUID user_id;
-	private long group_id;
-	private String name;
-	private int age;
-	private String address;
 	
+	private int group_id;
+	@Column("name")
+	@Indexed
+	private String name;
+	
+	@Column("age")
+	private int age;
+	
+	@Column("address")
+	private String address;
+	@Column("reference")
 	private Map< String, String> reference;	
 	
 	public Employee(){
 		
 	}
-	public Employee(final UUID user_id, final long group_id, final String name, final int age, final String address,
+	public Employee(final UUID user_id, final int group_id, final String name, final int age, final String address,
 			final Map<String,String> reference) {
 		this.user_id = user_id;
 		this.group_id= group_id;
@@ -32,38 +42,21 @@ public class Employee {
 		
 	}
 	
-	
-	
-
-
 	public UUID getUser_id() {
 		return user_id;
 	}
-
-
-
-
 
 	public void setUser_id(UUID user_id) {
 		this.user_id = user_id;
 	}
 
-
-
-
-
-	public long getGroup_id() {
+	public int getGroup_id() {
 		return group_id;
 	}
 
-
-
-
-	public void setGroup_id(long group_id) {
+	public void setGroup_id(int group_id) {
 		this.group_id = group_id;
 	}
-
-
 
 
 	public String getName() {
@@ -71,14 +64,9 @@ public class Employee {
 	}
 
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-
 
 	public int getAge() {
 		return age;

@@ -1,9 +1,13 @@
 package ifi.internaltool.allocation.utils;
+
 import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+ 
 public class WebUtils {
-	public static String toString(User user) {
+ 
+    public static String toString(User user) {
         StringBuilder sb = new StringBuilder();
  
         sb.append("UserName:").append(user.getUsername());
@@ -24,4 +28,5 @@ public class WebUtils {
         }
         return sb.toString();
     }
+     
 }

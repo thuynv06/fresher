@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.datastax.driver.core.exceptions.ConnectionException;
 import com.datastax.driver.core.utils.UUIDs;
 
+import ifi.internaltool.allocation.DAO.EmployeeDAO;
 import ifi.internaltool.allocation.model.Constants;
 import ifi.internaltool.allocation.model.Employee;
 import ifi.internaltool.allocation.model.Payload;
-import ifi.internaltool.allocation.repo.EmployeeRepository;
 import ifi.internaltool.allocation.service.EmployeeService;
 
 @RestController
@@ -71,8 +73,30 @@ public class EmployeeController {
 			message.setStatus(c.STATUS_OK());
 			return message;
 		}
-		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
+		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Create Successfull", data);
 		return message;
+	}
+
+	// update Employee
+	@PutMapping("/employees/{id}")
+	public @ResponseBody Payload updateEmployee(@PathVariable("id") UUID id, @RequestBody Employee emp) {
+		logger.info("Update Employess = " + emp.getName());
+		try {
+			Employee employee = employeeService.findById(id);
+
+		} catch (ConnectionException e) {
+			logger.error("ERROR: Get connection error", e);
+			message.setDescription("ERROR: " + e.getMessage());
+			message.setData(data);
+			message.setStatus(c.STATUS_OK());
+			return message;
+		}
+
+		employeeService.updateEmployee(id, emp);
+		data = employeeService.findById(id);
+		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), "Update Successfull", data);
+		return message;
+
 	}
 
 	// search employees by name
@@ -96,7 +120,7 @@ public class EmployeeController {
 	}
 
 	// search employees by ID
-	@GetMapping("/employees/id/{id}")
+	@GetMapping("/employees/{id}")
 	public @ResponseBody Payload findById(@PathVariable("id") UUID id) {
 		logger.info("get Employee By Id = " + id + "]");
 		try {
@@ -113,4 +137,20 @@ public class EmployeeController {
 		return message;
 	}
 
+	@DeleteMapping("/employees/{id}")
+	public @ResponseBody Payload deleteEmployee(@PathVariable("id") UUID id) {
+		logger.info("Delete Employee with Id = " + id + "]");
+		try {
+			employeeService.deleteEmployee(id);
+
+		} catch (ConnectionException e) {
+			logger.error("ERROR: Get connection error", e);
+			message.setDescription("ERROR: " + e.getMessage());
+			message.setData(data);
+			message.setStatus(c.STATUS_OK());
+			return message;
+		}
+		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Delete Successfull", data);
+		return message;
+	}
 }

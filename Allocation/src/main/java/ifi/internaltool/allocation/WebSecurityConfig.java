@@ -20,8 +20,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userService;
-	 @Autowired
-	    private DataSource dataSource;
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
