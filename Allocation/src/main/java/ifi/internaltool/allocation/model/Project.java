@@ -1,6 +1,8 @@
 package ifi.internaltool.allocation.model;
 
+//import java.time.LocalDate;
 import java.util.UUID;
+
 
 import org.elasticsearch.action.fieldstats.FieldStats.Date;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
@@ -8,6 +10,9 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.Indexed;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+import com.datastax.driver.core.LocalDate;
+
 @Table	
 public class Project {
 	
@@ -25,15 +30,15 @@ public class Project {
 		@Column("status")
 		private boolean status;
 		@Column("create_at")
-		private Date create_at;
+		private LocalDate create_at;
 		@Column("end_at")
-		private Date end_at;
+		private LocalDate end_at;
 		
 		
 		public Project(){
 			
 		}
-		public Project(final UUID project_id, final int group_id, final String desciption, final boolean status , final  Date create_at,final  Date end_at) {
+		public Project(final UUID project_id, final int group_id, final String desciption, final boolean status , final  LocalDate create_at,final LocalDate end_at) {
 			this.project_id=project_id;
 			this.group_id=group_id;
 			this.desciption= desciption;
@@ -72,18 +77,19 @@ public class Project {
 		public void setStatus(boolean status) {
 			this.status = status;
 		}
-		public Date getCreate_at() {
+		public LocalDate getCreate_at() {
 			return create_at;
 		}
-		public void setCreate_at(Date create_at) {
+		public void setCreate_at(LocalDate create_at) {
 			this.create_at = create_at;
 		}
-		public Date getEnd_at() {
+		public LocalDate getEnd_at() {
 			return end_at;
 		}
-		public void setEnd_at(Date end_at) {
+		public void setEnd_at(LocalDate end_at) {
 			this.end_at = end_at;
 		}
+		
 				
 		
 			
