@@ -31,15 +31,15 @@ import ifi.internaltool.allocation.service.EmployeeService;
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
-	
-	@Autowired 
+
+	@Autowired
 	private EmployeeService employeeService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	Payload message = new Payload();
-	Constants c= new Constants();
+	Constants c = new Constants();
 	Object data = "";
-	
+
 	// get All Employees
 	@GetMapping("/employees")
 	public @ResponseBody Payload getAllEmployees() {
@@ -56,8 +56,8 @@ public class EmployeeController {
 		}
 		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
 		return message;
-	}	
-	
+	}
+
 	// create Employee
 	@PostMapping("/employees/create")
 	public @ResponseBody Payload createEmployee(@Valid @RequestBody Employee emp) {
@@ -74,6 +74,7 @@ public class EmployeeController {
 		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
 		return message;
 	}
+
 	// search employees by name
 	@GetMapping("/employees/{name}")
 	public @ResponseBody Payload findEmPloyeeByName(@PathVariable String name) {
@@ -93,6 +94,7 @@ public class EmployeeController {
 		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
 		return message;
 	}
+
 	// search employees by ID
 	@GetMapping("/employees/id/{id}")
 	public @ResponseBody Payload findById(@PathVariable("id") UUID id) {
@@ -110,5 +112,5 @@ public class EmployeeController {
 		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
 		return message;
 	}
-	
+
 }
