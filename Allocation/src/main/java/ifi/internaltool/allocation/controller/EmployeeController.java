@@ -43,7 +43,7 @@ public class EmployeeController {
 	Object data = "";
 
 	// get All Employees
-	@GetMapping("/employees")
+	@GetMapping("/allemployees")
 	public @ResponseBody Payload getAllEmployees() {
 		logger.info("get All Employess = ");
 		try {
@@ -59,6 +59,26 @@ public class EmployeeController {
 		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
 		return message;
 	}
+	
+	
+	
+	@GetMapping("/employees")
+	public @ResponseBody Payload getListEmployees() {
+		logger.info("get All Employess = ");
+		try {
+			data = employeeService.getListEmployees();
+
+		} catch (ConnectionException e) {
+			logger.error("ERROR: Get connection error", e);
+			message.setDescription("ERROR: " + e.getMessage());
+			message.setData(data);
+			message.setStatus(c.STATUS_OK());
+			return message;
+		}
+		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
+		return message;
+	}
+	
 
 	// create Employee
 	@PostMapping("/employees/create")

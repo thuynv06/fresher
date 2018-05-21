@@ -41,7 +41,7 @@ password varchar,
 enable boolean,
 primary key (username,enable)
 );
-
+select * from app_user;
 create table user_role(
 id uuid,
 user_id uuid,
@@ -108,7 +108,7 @@ insert into group (group_id,name) values (1,'Khối A');
 insert into group (group_id,name) values (2,'Khối B');
 insert into group (group_id,name) values (3,'Khối C');
 select * from group;
-
+	
 
 create table project(
 project_id uuid,
@@ -128,8 +128,9 @@ select * from project;
 select * from project limit 1;
 
 create table allocated(
-project_id bigint,
-user_id bigint,
+id uuid;
+project_id uui,
+user_id uuid,
 month int,
 status boolean,
 completed float,
@@ -138,3 +139,6 @@ create_at date,
 end_at date,
 primary key ((user_id,project_id),month)
 );
+
+insert into allocated (id,project_id,user_id,month,status,expect,create_at,end_at) values (now(),,, )
+

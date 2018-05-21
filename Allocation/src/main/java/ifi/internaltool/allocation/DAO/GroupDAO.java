@@ -14,9 +14,13 @@ public interface GroupDAO extends  CassandraRepository<Group,String> {
 	public List<Group> findByName(String name);
 	
 	@Query(value="SELECT * FROM group WHERE group_id=?0")
-	public Group findById(UUID id);
+	public Group findById(int id);
 	
 	@Query(value="Delete  FROM group WHERE group_id=?0")
-	public Group deleteById(UUID id);
+	public Group deleteById(int id);
+	
+	
+	@Query(value="Select name  FROM group WHERE group_id=?0")
+	public String findNameGroupById(int id);
 	
 }

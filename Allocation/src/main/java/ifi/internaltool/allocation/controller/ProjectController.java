@@ -36,11 +36,28 @@ public class ProjectController {
 	Constants c = new Constants();
 	Object data = "";	
 	
-	@GetMapping("/projects")
+	@GetMapping("/allprojects")
 	public @ResponseBody Payload getAllProjects() {
 		logger.info("get All Projects = ");
 		try {
 			data = projectService.getAllProjects();
+
+		} catch (ConnectionException e) {
+			logger.error("ERROR: Get connection error", e);
+			message.setDescription("ERROR: " + e.getMessage());
+			message.setData(data);
+			message.setStatus(c.STATUS_OK());
+			return message;
+		}
+		message.setPayload(c.SUCCESS_CODE(), c.STATUS_OK(), " Get site data Successfull", data);
+		return message;
+	}
+	
+	@GetMapping("/projects")
+	public @ResponseBody Payload getListProjects() {
+		logger.info("get list Projects = ");
+		try {
+			data = projectService.getListProjects();
 
 		} catch (ConnectionException e) {
 			logger.error("ERROR: Get connection error", e);

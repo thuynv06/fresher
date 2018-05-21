@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.datastax.driver.core.utils.UUIDs;
 
+import ifi.internaltool.allocation.DAO.GroupDAO;
 import ifi.internaltool.allocation.DAO.ProjectDAO;
 import ifi.internaltool.allocation.model.Project;
 
@@ -15,12 +16,24 @@ public class ProjectService {
 
 	@Autowired
 	private ProjectDAO projectDAO;
+	@Autowired
+	private GroupDAO groupDAO;
+	
+	
 	// get all projects
 	public List<Project> getAllProjects(){	
 		System.out.println("Get all Projects...");
 		return (List<Project>)projectDAO.findAll();	
 	}
 	
+	
+	public List<Project>   getListProjects(){
+		List<Project> ls= projectDAO.findAll();	
+		for (Project p : ls) {
+			getNameGroup(p);
+		}
+		return ls;
+	}
 	// create project
 	
 	public Project createProject(final Project project) {
@@ -36,6 +49,7 @@ public class ProjectService {
 	public Project findById(final UUID id) {
 		System.out.println("Find Project with id: " + id + "...");
 		Project project=projectDAO.findById(id);
+		getNameGroup(project);
 		if( project == null) {
 			return null;
 		}
@@ -61,6 +75,10 @@ public class ProjectService {
 	}
 	
 	
+	// function get Name group thought groupID
+	public void getNameGroup(Project p) {
+		p.setGroup_name(groupDAO.findNameGroupById(p.getGroup_id()));
+	}
 	
 	
 	

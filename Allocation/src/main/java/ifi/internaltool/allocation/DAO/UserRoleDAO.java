@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 
-@Repository
+
 
 public interface UserRoleDAO extends  CassandraRepository<UserRoleDAO,String> {
 	 

@@ -34,7 +34,7 @@ public class GroupService {
 		return groupDAO.findByName(name);
 	}
 	
-	public Group findById(final UUID id) {
+	public Group findById(final int id) {
 		System.out.println("Find Group with id: " + id + "...");
 		Group group=groupDAO.findById(id);
 		if( group == null) {
@@ -43,7 +43,16 @@ public class GroupService {
 		return group;
 	}
 	
-	public void updateGroup(final UUID id, Group group) {
+	public String findNameGroupById(final int id) {
+		System.out.println("Find Name Group with id: " + id + "...");
+		String name=groupDAO.findNameGroupById(id);
+		if( name == null) {
+			return null;
+		}
+		return name;
+	}
+	
+	public void updateGroup(final int id, Group group) {
 		System.out.println("Update Group with ID = " + id + "...");
 		Group group_data=groupDAO.findById( id);
 		if( group == null) {
@@ -53,7 +62,7 @@ public class GroupService {
 		groupDAO.save(group_data);
 		
 	}
-	public void deleteEmployee(final UUID id) {
+	public void deleteEmployee(final int id) {
 		System.out.println("Delete Group with ID = " + id + "...");
 		groupDAO.deleteById(id);	
 	}

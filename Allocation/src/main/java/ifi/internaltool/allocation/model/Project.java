@@ -1,6 +1,6 @@
 package ifi.internaltool.allocation.model;
 
-//import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.UUID;
 
 
@@ -11,7 +11,7 @@ import org.springframework.data.cassandra.core.mapping.Indexed;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-import com.datastax.driver.core.LocalDate;
+//import com.datastax.driver.core.LocalDate;
 
 @Table	
 public class Project {
@@ -34,6 +34,9 @@ public class Project {
 		@Column("end_at")
 		private LocalDate end_at;
 		
+		private String group_name;
+		
+		
 		
 		public Project(){
 			
@@ -46,6 +49,12 @@ public class Project {
 			this.create_at= create_at;
 			this.end_at= end_at;
 				
+		}
+		public String getGroup_name() {
+			return group_name;
+		}
+		public void setGroup_name(String group_name) {
+			this.group_name = group_name;
 		}
 		public UUID getProject_id() {
 			return project_id;

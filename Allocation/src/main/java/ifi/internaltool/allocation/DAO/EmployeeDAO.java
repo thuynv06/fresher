@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.repository.Query;
 
 import ifi.internaltool.allocation.model.Employee;
 //import ifi.internaltool.allocation.service.Query;
-@Repository
+
 public interface EmployeeDAO extends  CassandraRepository<Employee,String> {
 
 

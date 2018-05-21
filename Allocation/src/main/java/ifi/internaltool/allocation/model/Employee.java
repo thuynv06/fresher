@@ -10,7 +10,11 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table	
+import jnr.ffi.annotations.Transient;
+
+
+
+@Table
 public class Employee {
 	@PrimaryKeyColumn(name = "user_id", type = PrimaryKeyType.PARTITIONED)
 	private UUID user_id;
@@ -28,6 +32,17 @@ public class Employee {
 	@Column("reference")
 	private Map< String, String> reference;	
 	
+	
+	private transient String name_group;
+	
+	
+	public String getName_group() {
+		return name_group;
+	}
+	 
+	public void setName_group(String name_group) {
+		this.name_group = name_group;
+	}
 	public Employee(){
 		
 	}
